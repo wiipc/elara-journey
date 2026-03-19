@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test</title>
+<style>
+body { background:#1a1208; color:#c9a84c; font-family:serif; text-align:center; padding:30px; }
+button { background:#c9a84c; color:#1a1208; border:none; padding:25px 50px; font-size:1.4rem; margin:15px; display:block; width:90%; cursor:pointer; }
+#log { color:#aaffaa; font-size:1rem; margin-top:20px; text-align:left; border:1px solid #444; padding:10px; min-height:100px; }
+</style>
+</head>
+<body>
+<h2>Test JavaScript</h2>
+<button id="b1">APPUIE ICI</button>
+<button id="b2">TEST localStorage</button>
+<div id="log">Chargement...</div>
+<script>
+var log = document.getElementById('log');
+window.onerror = function(msg, src, line) {
+  log.innerHTML += '<br>ERREUR: ' + msg + ' ligne ' + line;
+};
+log.innerHTML = 'Script chargé OK';
+var b1 = document.getElementById('b1');
+var b2 = document.getElementById('b2');
+if (b1) {
+  b1.onclick = function() { log.innerHTML += '<br>✅ Clic OK !'; };
+  log.innerHTML += '<br>b1 trouvé';
+} else {
+  log.innerHTML += '<br>❌ b1 manquant';
+}
+if (b2) {
+  b2.onclick = function() {
+    try { localStorage.setItem('t','1'); log.innerHTML += '<br>✅ localStorage OK'; }
+    catch(e) { log.innerHTML += '<br>❌ localStorage: ' + e.message; }
+  };
+  log.innerHTML += '<br>b2 trouvé';
+}
+log.innerHTML += '<br>Init terminée';
+</script>
+</body>
+</html>
